@@ -1,4 +1,3 @@
-
 from ftplib import FTP
 import ping
 from socket import *
@@ -76,12 +75,13 @@ def scanFTPport(iplist):
                         s.settimeout(0.5)
                         res = s.connect_ex((address, port))
                         if res == 0:
-                                ans = raw_input("FTP port %s open on ip %s, press 1 to attempt login\n" %(port, address))
+                                ans = input("FTP port %s open on ip %s, press 1 to attempt login\n" %(port, address))
                                 if ans == 1:
                                         loginFTP(address)
 
 def loginFTP(ip):
         ftp = FTP(ip)
+        print("Connecting...")
         ftp.login("pi", "raspberry")
         print("\n**WELCOME**\n\n" )
         ftp.retrlines('LIST')
@@ -106,3 +106,4 @@ scanFTPport(connected_devices)
 #scancommonportsfromlist(connected_devices)
 
 print("scan done")
+
